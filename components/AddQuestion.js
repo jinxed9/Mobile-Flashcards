@@ -4,6 +4,7 @@ import { View, StyleSheet, Text, TextInput, TouchableOpacity, Platform } from 'r
 import { gray, white, purple, lightPurp} from '../utils/colors'
 import { addCard } from '../actions'
 import { connect } from 'react-redux'
+import { addCardToDeck } from '../utils/api'
 
 function SubmitBtn ({ onPress }) {
   return (
@@ -27,6 +28,9 @@ class AddQuestion extends Component {
     const { title } = this.props.navigation.state.params
 
     this.props.dispatch(addCard( title, question, answer ))
+
+    addCardToDeck(title, question, answer)
+
     this.props.navigation.navigate('Deck',{title: title })
   }
 

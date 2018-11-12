@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import Deck from './components/Deck'
+import Quiz from './components/Quiz'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
@@ -80,6 +81,15 @@ const MainNavigator = createStackNavigator({
       },
     }),
   },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      },
+    }),    
+  }
 });
 
 export default class App extends React.Component {

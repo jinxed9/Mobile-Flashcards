@@ -7,6 +7,12 @@ import { gray, white, purple, lightPurp} from '../utils/colors'
 import { deleteDeck } from '../utils/api'
 
 class Deck extends Component {
+
+  onStartQuizPress = () => {
+    const { title } = this.props.deck
+    this.props.navigation.navigate('Quiz', {title: title})
+  }
+
 	onNewQuestionPress = () => {
     const { title } = this.props.deck
     this.props.navigation.navigate('AddQuestion',{title: title})
@@ -28,7 +34,7 @@ class Deck extends Component {
       <View>
         <Text style={{fontSize: 16, color: gray, alignSelf: 'center', margin: 10}}>{title}</Text>
         <Text style={{alignSelf: 'center', margin: 10}}>{`${length} cards`}</Text>
-        <TextButton style={styles.textBtn} children={'Start Quiz'}/>
+        <TextButton style={styles.textBtn} onPress={this.onStartQuizPress}children={'Start Quiz'}/>
         <TextButton style={styles.textBtn} onPress={this.onNewQuestionPress} children={'Add New Question'}/>
         <TextButton style={styles.deleteBtn} onPress={this.onDeletePress} children={'Delete Deck'} />
       </View>
