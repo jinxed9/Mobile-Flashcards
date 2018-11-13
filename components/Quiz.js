@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { View, StyleSheet, Text } from 'react-native'
 import { gray, white, purple, green, red} from '../utils/colors'
 
+
 class Quiz extends Component {
   state={
     index: 0,

@@ -5,12 +5,15 @@ import { View, StyleSheet, Text } from 'react-native'
 import { removeDeck } from '../actions'
 import { gray, white, purple, lightPurp, green} from '../utils/colors'
 import { deleteDeck } from '../utils/api'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Deck extends Component {
 
   onStartQuizPress = () => {
     const { title } = this.props.deck
     this.props.navigation.navigate('Quiz', {title: title})
+    clearLocalNotification()
+      .then(setLocalNotification())
   }
 
 	onNewQuestionPress = () => {
