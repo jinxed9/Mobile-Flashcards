@@ -22,7 +22,7 @@ class DeckList extends Component{
           renderItem={ ({item}) => <DeckListItem 
                                       title={item.key}
                                       navigation={this.props.navigation} 
-                                    />} 
+                                    />}
         />
       </View>
     );

@@ -11,7 +11,7 @@ function decks ( state = {}, action ){
 			return {
 				...state,
 				[action.title]:{
-					title:[action.title],
+					title:action.title,
 					questions:[],
 				}
 			}
@@ -24,7 +24,7 @@ function decks ( state = {}, action ){
 			return {
 				...state,
 				[action.title]:{
-					title:[action.title],
+					title: action.title,
 					questions:[ ...state[action.title].questions,
 						{question: action.question, answer: action.answer},
 						]
