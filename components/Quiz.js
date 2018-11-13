@@ -123,6 +123,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20,
   },
   restartBtn:{
     backgroundColor: green,
@@ -132,6 +134,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20,
   },
   correctBtn:{
     backgroundColor: green,
@@ -141,6 +145,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20,
   },
   showBtn:{
     backgroundColor: purple,
@@ -150,6 +156,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 150,
   },
   btnTxt:{
     color: white,
@@ -168,11 +175,18 @@ const styles = StyleSheet.create({
   question:{
     fontSize: 20,
     alignSelf: 'center',
+    marginTop: 40,
+    marginBottom: 20,
+    marginLeft: 10,
+    marginRight: 10,
   },
   answer:{
     fontSize: 20,
     fontStyle: 'italic',
     alignSelf: 'center',
+    marginBottom: 20,
+    marginLeft: 10,
+    marginRight: 10,
   },
   results:{
     fontSize: 30,
@@ -181,10 +195,14 @@ const styles = StyleSheet.create({
   numCorrect:{
     fontSize: 20,
     alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 20,
   },
   score:{
     fontSize: 25,
     alignSelf: 'center',
+    marginTop: 30,
+    marginBottom: 30,
   }
 })
 

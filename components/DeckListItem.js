@@ -31,11 +31,15 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   listItem: {
-    margin: 2,
+    margin: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 8,
     textAlign: 'center',
     color: purple,
     backgroundColor: white,
     padding: 15,
+    fontSize: 20,
   }
 })
 

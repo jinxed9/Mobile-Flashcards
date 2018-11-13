@@ -28,7 +28,7 @@ class AddQuestion extends Component {
 
   render(){
     return (
-      <View>
+      <View style={styles.container}>
         <TextInputField 
           onChangeText={(question) => this.setState({question})} 
           value={this.state.question}
