@@ -17,8 +17,11 @@ class DeckListItem extends Component {
     const { style } = this.props
     return (
       <View style={styles.container}>
-          <TouchableOpacity onPress={this.onPress}>
-            <Text style={styles.listItem}>{title}</Text>
+          <TouchableOpacity 
+            style={styles.listItem}
+            onPress={this.onPress}>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.size}>{`${length} cards`}</Text>
           </TouchableOpacity>
       </View>
     )
@@ -32,20 +35,31 @@ const styles = StyleSheet.create({
   },
   listItem: {
     margin: 5,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 15,
+    marginRight: 15,
     borderRadius: 8,
-    textAlign: 'center',
-    color: purple,
     backgroundColor: white,
     padding: 15,
-    fontSize: 20,
-  }
+
+  },
+  title:{
+    fontSize: 18,
+    color: purple,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',   
+  },
+  size:{
+    fontSize: 12,
+    color: gray,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',  
+  },
 })
 
 function mapStateToProps(decks,{title}){
   const deck = decks[title]
-
   return {deck}
 }
 
