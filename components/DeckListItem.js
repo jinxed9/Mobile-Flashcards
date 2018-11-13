@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
-
 import { gray, white, purple } from '../utils/colors'
 
 class DeckListItem extends Component {
@@ -15,8 +14,9 @@ class DeckListItem extends Component {
   render(){
     const { title} = this.props.deck
     const { length } = this.props.deck.questions
+    const { style } = this.props
     return (
-      <View>
+      <View style={styles.container}>
           <TouchableOpacity onPress={this.onPress}>
             <Text style={styles.listItem}>{title}</Text>
           </TouchableOpacity>
@@ -26,17 +26,16 @@ class DeckListItem extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'stretch',
+  },
   listItem: {
-    margin: 5,
+    margin: 2,
     textAlign: 'center',
-    color: white,
-    backgroundColor: purple,
-    padding: 10,
-    height: 45,
-    borderRadius: 4,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center'
+    color: purple,
+    backgroundColor: white,
+    padding: 15,
   }
 })
 

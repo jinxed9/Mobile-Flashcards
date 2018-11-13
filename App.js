@@ -67,8 +67,11 @@ const MainNavigator = createStackNavigator({
     screen: Deck,
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
+      title: navigation.state.params.title,
       headerStyle: {
         backgroundColor: purple,
+        marginTop:(Platform.OS === 'ios') ? 0 : -Constants.statusBarHeight,
+
       },
     }),
   },
@@ -76,8 +79,10 @@ const MainNavigator = createStackNavigator({
     screen: AddQuestion,
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
+      title: 'Add Card',
       headerStyle: {
         backgroundColor: purple,
+        marginTop:(Platform.OS === 'ios') ? 0 : -Constants.statusBarHeight,
       },
     }),
   },
@@ -87,6 +92,7 @@ const MainNavigator = createStackNavigator({
       headerTintColor: white,
       headerStyle: {
         backgroundColor: purple,
+        marginTop:(Platform.OS === 'ios') ? 0 : -Constants.statusBarHeight,
       },
     }),    
   }

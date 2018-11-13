@@ -3,7 +3,7 @@ import TextButton from './TextButton'
 import { connect } from 'react-redux'
 import { View, StyleSheet, Text } from 'react-native'
 import { removeDeck } from '../actions'
-import { gray, white, purple, lightPurp} from '../utils/colors'
+import { gray, white, purple, lightPurp, green} from '../utils/colors'
 import { deleteDeck } from '../utils/api'
 
 class Deck extends Component {
@@ -31,12 +31,23 @@ class Deck extends Component {
     const length  = deck ? deck.questions.length : 0
     const title = deck ? deck.title : "None"
     return (
-      <View>
-        <Text style={{fontSize: 16, color: gray, alignSelf: 'center', margin: 10}}>{title}</Text>
-        <Text style={{alignSelf: 'center', margin: 10}}>{`${length} cards`}</Text>
-        <TextButton style={styles.textBtn} onPress={this.onStartQuizPress}children={'Start Quiz'}/>
-        <TextButton style={styles.textBtn} onPress={this.onNewQuestionPress} children={'Add New Question'}/>
-        <TextButton style={styles.deleteBtn} onPress={this.onDeletePress} children={'Delete Deck'} />
+      <View style={styles.container}>
+        <Text style={styles.deckSize}>{`${length} cards`}</Text>
+        <TextButton
+          btnStyle={styles.startBtn} 
+          txtStyle={styles.startTxt}
+          onPress={this.onStartQuizPress}
+          value={'Start Quiz'}/>
+        <TextButton 
+          btnStyle={styles.addBtn}
+          txtStyle={styles.addTxt} 
+          onPress={this.onNewQuestionPress} 
+          value={'Create Card'}/>
+        <TextButton 
+          btnStyle={styles.deleteBtn}
+          txtStyle={styles.deleteText} 
+          onPress={this.onDeletePress} 
+          value={'Delete Deck'} />
       </View>
     )
   }
@@ -46,70 +57,49 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: white
+    backgroundColor: white,
+    justifyContent:'space-around',
   },
-  row: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-  },
-  iosSubmitBtn: {
-    backgroundColor: purple,
-    padding: 10,
-    borderRadius: 7,
-    height: 45,
-    marginLeft: 40,
-    marginRight: 40,
-  },
-  AndroidSubmitBtn: {
-    backgroundColor: purple,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 2,
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  submitBtnText: {
-    color: white,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 30,
-    marginRight: 30,
-  },
-  textBtn: {
-    margin: 10,
-    textAlign: 'center',
-    color: white,
-    backgroundColor: purple,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 4,
+  deleteBtn:{
+    width: 100,
+    height: 50,
     alignSelf: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  deleteBtn: {
-    margin: 10,
-    textAlign: 'center',
+  deleteText: {
     color: purple,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 4,
+  },
+  startBtn: {
+    backgroundColor: green,
+    width: 200,
+    height: 50,
+    borderRadius: 8,
     alignSelf: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  startTxt: {
+    color: white,
+    fontSize: 20,
+  },
+  addBtn: {
+    backgroundColor: purple,
+    width: 200,
+    height: 50,
+    borderRadius: 8,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addTxt: {
+    color: white,
+    fontSize: 20,
+  },
+  deckSize: {
+    color: gray,
+    fontSize: 15,
+    alignSelf: 'center'
   }
 })
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TextButton from './TextButton'
 import { connect } from 'react-redux'
 import { View, StyleSheet, Text } from 'react-native'
-import { gray, white, purple, lightPurp} from '../utils/colors'
+import { gray, white, purple, green, red} from '../utils/colors'
 
 class Quiz extends Component {
   state={
@@ -48,35 +48,60 @@ class Quiz extends Component {
     const { questions, title } = this.props.deck
     
     return (
-        <View>
+        <View style={styles.container}>
         { questions.length > 0 ?
             this.state.index < questions.length ?
             <View>
-              <Text>{`${this.state.index+1}/${questions.length}`}</Text>
-              <Text>{`${questions[this.state.index].question}`}</Text>
+              <Text style={styles.index}>
+                {`${this.state.index+1}/${questions.length}`}
+              </Text>
+              <Text style={styles.question}>
+                {`${questions[this.state.index].question}`}
+              </Text>
               {this.state.showAnswer ? 
                 <View>
-                  <Text>{`${questions[this.state.index].answer}`}</Text>
-                  <TextButton style={styles.textBtn} onPress={this.onCorrectPress} children={'Correct'}/>
-                  <TextButton style={styles.deleteBtn} onPress={this.onIncorrectPress} children={'Incorrect'} />
+                  <Text style={styles.answer}>
+                    {`${questions[this.state.index].answer}`}
+                  </Text>
+                  <TextButton 
+                    btnStyle={styles.correctBtn}
+                    txtStyle={styles.btnTxt} 
+                    onPress={this.onCorrectPress} 
+                    value={'Correct'}/>
+                  <TextButton 
+                    btnStyle={styles.incorrectBtn}
+                    txtStyle={styles.btnTxt} 
+                    onPress={this.onIncorrectPress} 
+                    value={'Incorrect'} />
                 </View>
                 :
                 <View>
-                  <TextButton style={styles.textBtn} onPress={this.onShowAnswerPress} children={'Show Answer'}/>
+                  <TextButton 
+                    btnStyle={styles.showBtn} 
+                    txtStyle={styles.btnTxt}
+                    onPress={this.onShowAnswerPress} 
+                    value={'Show Answer'}/>
                 </View>
               }
             </View>
             :
             <View>
-              <Text>Results</Text>
-              <Text>{`${this.state.correct} correct out of ${questions.length}`}</Text>
-              <Text>{`${this.state.incorrect} incorrect out of ${questions.length}`}</Text>
-              <Text>{`Score: ${this.state.correct/questions.length}`}</Text>
-              <TextButton style={styles.deleteBtn} onPress={this.restartQuiz} children={'Restart Quiz'} />
+              <Text style={styles.results}>Results</Text>
+              <Text style={styles.numCorrect}>
+                {`${this.state.correct} correct out of ${questions.length}`}
+              </Text>
+              <Text style={styles.score}>
+                {`Score: ${this.state.correct/questions.length}`}
+              </Text>
+              <TextButton 
+                btnStyle={styles.restartBtn}
+                txtStyle={styles.btnTxt} 
+                onPress={this.restartQuiz} 
+                value={'Restart Quiz'} />
             </View>
          :
           <View>
-            <Text>"There are no cards in this deck!"</Text>
+            <Text style={styles.emptyDeck}>There are no cards in this deck!</Text>
           </View>
         }
         </View>
@@ -88,70 +113,78 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: white
+    backgroundColor: white,
   },
-  row: {
-    flexDirection: 'row',
-    flex: 1,
+  incorrectBtn:{
+    backgroundColor: red,
+    width: 200,
+    height: 50,
+    borderRadius: 8,
+    alignSelf: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  iosSubmitBtn: {
-    backgroundColor: purple,
-    padding: 10,
-    borderRadius: 7,
-    height: 45,
-    marginLeft: 40,
-    marginRight: 40,
+  restartBtn:{
+    backgroundColor: green,
+    width: 200,
+    height: 50,
+    borderRadius: 8,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  AndroidSubmitBtn: {
+  correctBtn:{
+    backgroundColor: green,
+    width: 200,
+    height: 50,
+    borderRadius: 8,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  showBtn:{
     backgroundColor: purple,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 2,
+    width: 200,
+    height: 50,
+    borderRadius: 8,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  btnTxt:{
+    color: white,
+    fontSize: 20,
+  },
+  emptyDeck:{
+    fontSize: 20,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  index:{
+    fontSize:15,
     alignSelf: 'flex-end',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  submitBtnText: {
-    color: white,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 30,
-    marginRight: 30,
-  },
-  textBtn: {
-    margin: 10,
-    textAlign: 'center',
-    color: white,
-    backgroundColor: purple,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 4,
+  question:{
+    fontSize: 20,
     alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center'
   },
-  deleteBtn: {
-    margin: 10,
-    textAlign: 'center',
-    color: purple,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 4,
+  answer:{
+    fontSize: 20,
+    fontStyle: 'italic',
     alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center'
+  },
+  results:{
+    fontSize: 30,
+    alignSelf: 'center',
+  },
+  numCorrect:{
+    fontSize: 20,
+    alignSelf: 'center',
+  },
+  score:{
+    fontSize: 25,
+    alignSelf: 'center',
   }
 })
 

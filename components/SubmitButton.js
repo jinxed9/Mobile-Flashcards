@@ -1,15 +1,15 @@
-import React from 'react'
-import { Text, TouchableOpacity, StyleSheet, Platform } from 'react-native'
-import { purple, white, } from '../utils/colors'
+import  React from 'react';
+import { Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import { white, purple } from '../utils/colors'
 
-function TextButton ({ value, onPress, txtStyle, btnStyle={} }){
-	return(
-		<TouchableOpacity
-			style={btnStyle}
-			onPress={onPress}>
-			<Text style={txtStyle}>{value}</Text>
-		</TouchableOpacity>
-	)
+function SubmitButton ({ onPress }) {
+  return (
+    <TouchableOpacity
+      style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+      onPress={onPress}>
+        <Text style={styles.submitBtnText}>SUBMIT</Text>
+    </TouchableOpacity>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -40,4 +40,5 @@ const styles = StyleSheet.create({
   },
 })
 
-export default TextButton
+
+export default SubmitButton

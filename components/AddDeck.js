@@ -5,16 +5,8 @@ import { addDeck } from '../actions'
 import { connect } from 'react-redux'
 import { white, purple } from '../utils/colors'
 import { saveDeckTitle } from '../utils/api'
-
-function SubmitBtn ({ onPress }) {
-  return (
-    <TouchableOpacity
-      style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
-      onPress={onPress}>
-        <Text style={styles.submitBtnText}>SUBMIT</Text>
-    </TouchableOpacity>
-  )
-}
+import SubmitButton from './SubmitButton'
+import TextInputField from './TextInputField'
 
 class AddDeck extends Component{
   constructor(props){
@@ -40,13 +32,12 @@ class AddDeck extends Component{
   render() {
     return (
       <View style={styles.container}>
-        <Text> What is the name of your new deck?</Text>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({text})}
+        <Text style={styles.promptText}>What is the name of your new deck?</Text>
+        <TextInputField 
+          onChangeText={(text) => this.setState({text})} 
           value={this.state.text}
-        />
-        <SubmitBtn onPress={this.submit} />
+          />
+        <SubmitButton onPress={this.submit} />
       </View>
     );
   }
@@ -55,44 +46,15 @@ class AddDeck extends Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'stretch',
+    justifyContent: 'center',
     padding: 20,
     backgroundColor: white
   },
-  row: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-  },
-  iosSubmitBtn: {
-    backgroundColor: purple,
-    padding: 10,
-    borderRadius: 7,
-    height: 45,
-    marginLeft: 40,
-    marginRight: 40,
-  },
-  AndroidSubmitBtn: {
-    backgroundColor: purple,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 2,
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  submitBtnText: {
-    color: white,
-    fontSize: 22,
+  promptText:{
+    fontSize: 25,
     textAlign: 'center',
-  },
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 30,
-    marginRight: 30,
+    margin: 20,
   },
 })
 
