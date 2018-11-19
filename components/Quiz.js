@@ -35,6 +35,10 @@ class Quiz extends Component {
     this.setState({showAnswer: true})
   }
 
+  onBackPress = () => {
+    this.props.navigation.pop()
+  }
+
   restartQuiz = () => {
     this.setState({
       index: 0,
@@ -99,6 +103,11 @@ class Quiz extends Component {
                 txtStyle={styles.btnTxt} 
                 onPress={this.restartQuiz} 
                 value={'Restart Quiz'} />
+              <TextButton 
+                btnStyle={styles.backBtn}
+                txtStyle={styles.backTxt} 
+                onPress={this.onBackPress} 
+                value={'Back to Deck'}/>
             </View>
          :
           <View>
@@ -204,7 +213,20 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
     marginBottom: 30,
-  }
+  },
+  backBtn: {
+    backgroundColor: purple,
+    width: 200,
+    height: 50,
+    borderRadius: 8,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backTxt: {
+    color: white,
+    fontSize: 20,
+  },
 })
 
 function mapStateToProps( decks, { navigation }){
